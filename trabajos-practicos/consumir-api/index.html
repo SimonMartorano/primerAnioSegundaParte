@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title>Random Pokemon</title>
   </head>
   <body>
     <label for="type-select">Elíge el tipo de Pokemón:</label>
 
     <select name="pokemon-type" id="type-select">
-      <option value="none">--Elíge una opción--</option>
+      <option value="none" selected="selected">--Elíge una opción--</option>
       <option value="normal">Normal</option>
       <option value="fire">Fuego</option>
       <option value="steel">Acero</option>
@@ -30,5 +31,8 @@
       <option value="fairy">Hada</option>   
     </select>
 
+    <div class="pokemon-images"></div>
+
+    <script type="text/javascript" src="/trabajos-practicos/consumir-api/script.js"></script>
   </body>
 </html>

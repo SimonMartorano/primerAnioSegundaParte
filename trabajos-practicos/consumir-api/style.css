@@ -1,0 +1,30 @@
+body {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 50px;
+}
+
+label {
+  font-size: 1.3rem;
+}
+
+img {
+  width: 200px;
+}
+
+.pokemon-images {
+  display: flex;
+  gap: 30px;
+}
+
+.card {
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  border: 1px solid black;
+}
