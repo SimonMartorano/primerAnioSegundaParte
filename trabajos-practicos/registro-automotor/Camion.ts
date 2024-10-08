@@ -1,35 +1,23 @@
-export class Camion {
-  private marca: string;
-  private modelo: string;
-  private patente: string = "";
+import { Vehiculo } from "./Vehiculo";
 
-  constructor(marca: string, modelo: string, patente: string) {
-    this.marca = marca;
-    this.modelo = modelo;
-    this.setPatente(patente);
+export class Camion extends Vehiculo {
+  private capacidadDeCarga: number;
+
+  constructor(
+    marca: string,
+    modelo: string,
+    patente: string,
+    capacidadDeCarga: number
+  ) {
+    super(marca, modelo, patente);
+    this.capacidadDeCarga = capacidadDeCarga;
   }
 
-  //Getters
-
-  public getMarca(): string {
-    return this.marca;
+  public getCapacidadDeCarga(): number {
+    return this.capacidadDeCarga;
   }
 
-  public getModelo(): string {
-    return this.modelo;
-  }
-
-  public getPatente(): string {
-    return this.patente;
-  }
-
-  public setPatente(patente: string): void {
-    const regex = /^[A-Z]{3}[0-9]{3}$/;
-
-    if (!regex.test(patente)) {
-      throw new Error("Formato invalido de patente");
-    } else {
-      this.patente = patente;
-    }
+  public setCapacidadDeCarga(capacidadDeCarga: number): void {
+    this.capacidadDeCarga = capacidadDeCarga;
   }
 }

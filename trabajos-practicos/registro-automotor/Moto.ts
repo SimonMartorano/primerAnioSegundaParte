@@ -1,35 +1,23 @@
-export class Moto {
-  private marca: string;
-  private modelo: string;
-  private patente: string = "";
+import { Vehiculo } from "./Vehiculo";
 
-  constructor(marca: string, modelo: string, patente: string) {
-    this.marca = marca;
-    this.modelo = modelo;
-    this.setPatente(patente);
+export class Moto extends Vehiculo {
+  private cilindrada: number;
+
+  constructor(
+    marca: string,
+    modelo: string,
+    patente: string,
+    cilindrada: number
+  ) {
+    super(marca, modelo, patente);
+    this.cilindrada = cilindrada;
   }
 
-  //Getters
-
-  public getMarca(): string {
-    return this.marca;
+  public getCilindrada(): number {
+    return this.cilindrada;
   }
 
-  public getModelo(): string {
-    return this.modelo;
-  }
-
-  public getPatente(): string {
-    return this.patente;
-  }
-
-  public setPatente(patente: string): void {
-    const regex = /^[A-Z]{3}[0-9]{3}$/;
-
-    if (!regex.test(patente)) {
-      throw new Error("Formato invalido de patente");
-    } else {
-      this.patente = patente;
-    }
+  public setCilindrada(cilindrada: number): void {
+    this.cilindrada = cilindrada;
   }
 }

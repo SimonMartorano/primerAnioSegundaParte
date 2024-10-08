@@ -1,3 +1,4 @@
+import { Vehiculo } from "./Vehiculo";
 import { Auto } from "./Auto";
 import { Moto } from "./Moto";
 import { Camion } from "./Camion";
@@ -28,94 +29,74 @@ export class registroAutomotor {
   }
 
   public getAutos(): Auto[] {
-
     //Devuelve una copia del arreglo de autos.
     const copiaAutos: Auto[] = this.autos.map((auto) => ({ ...auto } as Auto));
     return copiaAutos;
   }
 
   public getMotos(): Moto[] {
-    
     const copiaMotos: Moto[] = this.motos.map((moto) => ({ ...moto } as Moto));
     return copiaMotos;
-
   }
 
   public getCamiones(): Camion[] {
-    
-    const copiaCamiones: Camion[] = this.camiones.map((camion) => ({ ...camion } as Camion));
+    const copiaCamiones: Camion[] = this.camiones.map(
+      (camion) => ({ ...camion } as Camion)
+    );
     return copiaCamiones;
-
   }
 
   //Metodos para administrar vehiculos
 
-  /* ------------------------------------------- AUTOS ---------------------------------------------------*/
-
-  public agregarAuto(auto: Auto): void {
-    //Si el parametro ingresado no es indefinido y el auto ingresado no existe ya en el arreglo, agregarlo.
-    if (auto != undefined && !this.autos.includes(auto)) {
-      this.autos.push(auto);
-    }
-  }
-
-  public modificarAuto(patente: string, auto: Auto): void {
-    //Recorre los autos basandose en la patente, al encontrarla reemplaza ese auto por el ingresado por parametro.
-    for (let i = 0; i < this.autos.length; i++) {
-      if (this.autos[i].getPatente() === patente) {
-        this.autos[i] = auto;
+  public agregarVehiculo(vehiculo: Vehiculo): void {
+    if (vehiculo != undefined) {
+      //Se verifica de que tipo de vehiculo se trata y si no existe ya su patente en el arreglo correspondiente.
+      if (
+        vehiculo instanceof Auto &&
+        !this.autos.some((a) => a.getPatente() === vehiculo.getPatente())
+      ) {
+        this.autos.push(vehiculo);
+      } else if (
+        vehiculo instanceof Moto &&
+        !this.motos.some((m) => m.getPatente() === vehiculo.getPatente())
+      ) {
+        this.motos.push(vehiculo);
+      } else if (
+        vehiculo instanceof Camion &&
+        !this.camiones.some((c) => c.getPatente() === vehiculo.getPatente())
+      ) {
+        this.camiones.push(vehiculo);
       }
     }
   }
 
-  public darDeBajaAuto(patente: string): void {
+  public modificarVehiculo(patente: string, vehiculo: Vehiculo): void {
+    if (vehiculo instanceof Auto) {
+      for (let i = 0; i < this.autos.length; i++) {
+        if (this.autos[i].getPatente() === patente) {
+          this.autos[i] = vehiculo;
+        }
+      }
+    } else if (vehiculo instanceof Moto) {
+      for (let i = 0; i < this.motos.length; i++) {
+        if (this.motos[i].getPatente() === patente) {
+          this.motos[i] = vehiculo;
+        }
+      }
+    } else if (vehiculo instanceof Camion) {
+      for (let i = 0; i < this.camiones.length; i++) {
+        if (this.camiones[i].getPatente() === patente) {
+          this.camiones[i] = vehiculo;
+        }
+      }
+    }
+  }
+
+  public darDeBajaVehiculo(patente: string): void {
     this.autos = this.autos.filter((auto) => auto.getPatente() != patente);
-  }
-  
-
-  /* ------------------------------------------- MOTOS ---------------------------------------------------*/
-
-  public agregarMoto(moto: Moto): void {
-    
-    if (moto != undefined && !this.motos.includes(moto)) {
-      this.motos.push(moto);
-    }
-  }
-
-  public modificarMoto(patente: string, moto: Moto): void {
-    
-    for (let i = 0; i < this.motos.length; i++) {
-      if (this.motos[i].getPatente() === patente) {
-        this.motos[i] = moto;
-      }
-    }
-  }
-
-  public darDeBajaMoto(patente: string): void {
     this.motos = this.motos.filter((moto) => moto.getPatente() != patente);
+    this.camiones = this.camiones.filter(
+      (camiones) => camiones.getPatente() != patente
+    );
   }
-
-  /* ------------------------------------------- CAMIONES ---------------------------------------------------*/
-
-  public agregarCamion(camion: Camion): void {
-    //Si el parametro ingresado no es indefinido y el camión ingresado no existe ya en el arreglo, agregarlo.
-    if (camion != undefined && !this.camiones.includes(camion)) {
-      this.camiones.push(camion);
-    }
-  }
-
-  public modificarCamion(patente: string, camion: Camion): void {
-    //Recorre los camiones basandose en la patente, al encontrarla reemplaza ese camión por el ingresado por parametro.
-    for (let i = 0; i < this.camiones.length; i++) {
-      if (this.camiones[i].getPatente() === patente) {
-        this.camiones[i] = camion;
-      }
-    }
-  }
-
-  public darDeBajaCamion(patente: string): void {
-    this.camiones = this.camiones.filter((camion) => camion.getPatente() != patente);
-  }
-
-
 }

@@ -7,15 +7,15 @@ import { registroAutomotor } from "./registroAutomotor";
 const automotor1 = new registroAutomotor("Registro Automotor Olavarria");
 
 //Agregamos algunos autos
-automotor1.agregarAuto(new Auto("Honda", "Civic", "AAA111"));
-automotor1.agregarAuto(new Auto("Fiat", "Toro", "BBB222"));
-automotor1.agregarAuto(new Auto("Ford", "Ranger", "CCC333"));
+automotor1.agregarVehiculo(new Auto("Honda", "Civic", "AAA111", 4));
+automotor1.agregarVehiculo(new Auto("Fiat", "Toro", "BBB222", 4));
+automotor1.agregarVehiculo(new Auto("Ford", "Ranger", "CCC333", 4));
 
 //Modificamos el auto de la patente especificada
-automotor1.modificarAuto("BBB222", new Auto("Nissan", "Frontier", "DDD444"));
+automotor1.modificarVehiculo("BBB222", new Auto("Nissan", "Frontier", "DDD444", 4));
 
 //Eliminamos el auto de la patente especificada
-automotor1.darDeBajaAuto("CCC333");
+automotor1.darDeBajaVehiculo("CCC333");
 
 //Imprimimos algunos datos
 console.log(automotor1.getNombre()); 
