@@ -24,7 +24,7 @@ export class Servicio{
         this.precio = precio;
     }
 
-    public spa(){};
-    public desayuno(){};
+
+
 
 }

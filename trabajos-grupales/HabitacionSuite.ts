@@ -3,7 +3,7 @@ import { Servicio } from "./Servicio";
 
 export class HabitacionSuite extends Habitacion{
 
-    
+    private servicosGratuitos:string[] = ["television", "spa", "wifi", "desayuno"];
 
     constructor(numero:number, estado:string, precioBase:number){
         super(numero, estado, precioBase); 
@@ -14,8 +14,17 @@ export class HabitacionSuite extends Habitacion{
         this.precioBase = precioBase;
     }
 
-    public calcularCosto(precioBase:number, servicios:Servicio[]) {
-        return this.precioBase;
+    public calcularCosto() {
+
+        let precioTotal:number = 0;
+
+        this.servicios.forEach(servicio => {
+            if(!this.servicosGratuitos.includes(servicio.getNombre())){
+                precioTotal = precioTotal + servicio.getPrecio();
+            }
+        });
+
+        return precioTotal + this.precioBase;
     }
 
 

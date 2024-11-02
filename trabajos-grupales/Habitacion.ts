@@ -4,7 +4,7 @@ export abstract class Habitacion{
     protected numero:number;
     protected estado:string;
     protected precioBase:number;
-    private servicios:Servicio[] = [];
+    protected servicios:Servicio[] = [];
 
     constructor(numero:number, estado:string, precioBase:number){
 
@@ -26,7 +26,7 @@ export abstract class Habitacion{
     public reservar(numero:number):void{
         if(this.estado == "disponible"){
             this.estado = "reservada";
-            console.log(`Habitacion ${numero} reservada`);
+            console.log(`Habitacion ${numero} ha sido reservada`);
         }else{
             console.log("La habitacion no esta disponible");
         }
@@ -39,10 +39,12 @@ export abstract class Habitacion{
         }
     }
 
-    abstract calcularCosto(precioBase:number, servicios:Servicio[]);
+    abstract calcularCosto():void;
 
     public agregarServicio(servicio:Servicio):void{
         //Logica (que no haya servicios repetidos)
-        this.servicios.push(servicio);
+        if(!this.servicios.includes(servicio)){
+            this.servicios.push(servicio);
+        }
     }
 }
